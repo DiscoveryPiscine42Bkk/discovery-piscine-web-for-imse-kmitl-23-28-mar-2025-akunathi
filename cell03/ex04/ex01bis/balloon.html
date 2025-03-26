@@ -27,14 +27,14 @@
     <div id="ballon"></div>
     <script>
         $(document).ready(function () {
-            const colors = ["rgb(255, 0, 0)", "rgb(0, 128, 0)", "rgb(0, 0, 255)"]; // ใช้ค่าที่ jQuery คืนมา
+            const colors = ["rgb(255, 0, 0)", "rgb(0, 128, 0)", "rgb(0, 0, 255)"];
             $("#ballon").on("click", function () {
                 let width = $(this).width() + 10;
                 let height = $(this).height() + 10;
                 $(this).width(width).height(height);
 
-                let currentColor = $(this).css("background-color").replace(/\s/g, ""); // ลบช่องว่างออก
-                console.log("Current Color:", currentColor); // เช็คค่าที่ได้
+                let currentColor = $(this).css("background-color").replace(/\s/g, ""); 
+                console.log("Current Color:", currentColor); 
 
                 let index = colors.indexOf(currentColor);
                 let newColor = colors[(index + 1) % colors.length];
