@@ -53,7 +53,7 @@ $(document).ready(function () {
         let txt = prompt("Please Enter TODO LIST:");
         if (txt) {
             let id = Date.now();
-            setCookie(id, txt, 7); // เก็บคุกกี้ได้นาน 7 วัน
+            setCookie(id, txt, 7);
             createTodo(txt, id);
         }
     });
