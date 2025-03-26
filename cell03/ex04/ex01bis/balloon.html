@@ -1,67 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <style>
-    .container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-    }
-    #ballon {
-      border-radius: 50%;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 200px;
-    }
-  </style>
-  <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        #ballon {
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
     <div class="container">
-      <div
-        onclick="addSize()"
-        onmouseleave="removeSize()"
-        id="ballon"
-        style="width: 200px; height: 200px; background-color: rgb(238, 75, 75)"
-      ></div>
+        <div id="ballon"></div>
     </div>
-  </body>
-  <script>
-    const removeSize = () => {
-      const ballon = document.getElementById("ballon");
-      const colors = ["blue", "green", "red"];
-      let width = parseInt(ballon.style.width) - 5;
-      let height = parseInt(ballon.style.height) - 5;
-      if (width < 200) {
-        ballon.style.width = 200 + "px";
-        ballon.style.height = 200 + "px";
-      } else {
-        ballon.style.width = width + "px";
-        ballon.style.height = height + "px";
-      }
-      const color = ballon.style.backgroundColor;
-      ballon.style.backgroundColor =
-        colors[(colors.findIndex((e) => e == color) + 1) % 3];
-    };
-    const addSize = () => {
-      const ballon = document.getElementById("ballon");
-      const colors = ["red", "green", "blue"];
-      let width = parseInt(ballon.style.width) + 10;
-      let height = parseInt(ballon.style.height) + 10;
-      if (width < 200) {
-        ballon.style.width = 200 + "px";
-        ballon.style.height = 200 + "px";
-        ballon.style.backgroundColor = "red";
-      } else {
-        ballon.style.width = width + "px";
-        ballon.style.height = height + "px";
-        const color = ballon.style.backgroundColor;
-        ballon.style.backgroundColor =
-          colors[(colors.findIndex((e) => e == color) + 1) % 3];
-      }
-    };
-  </script>
+    <script>
+        $(document).ready(function() {
+            const colors = ["red", "green", "blue"];
+
+            function getNextColor(currentColor) {
+                let rgbToColor = {
+                    "rgb(255, 0, 0)": "red",
+                    "rgb(0, 128, 0)": "green",
+                    "rgb(0, 0, 255)": "blue"
+                };
+                
+                let namedColor = rgbToColor[currentColor] || "red"; // แปลง RGB เป็นชื่อสี
+                let nextIndex = (colors.indexOf(namedColor) + 1) % colors.length;
+                return colors[nextIndex];
+            }
+
+            $("#ballon").on("click", function() {
+                let width = $(this).width() + 10;
+                let height = $(this).height() + 10;
+
+                if (width < 200) {
+                    $(this).css({ width: "200px", height: "200px", backgroundColor: "red" });
+                } else {
+                    $(this).css({ width: width + "px", height: height + "px" });
+                    let currentColor = $(this).css("background-color");
+                    $(this).css("background-color", getNextColor(currentColor));
+                }
+            });
+
+            $("#ballon").on("mouseleave", function() {
+                let width = $(this).width() - 5;
+                let height = $(this).height() - 5;
+
+                if (width < 200) {
+                    $(this).css({ width: "200px", height: "200px" });
+                } else {
+                    $(this).css({ width: width + "px", height: height + "px" });
+                }
+                
+                let currentColor = $(this).css("background-color");
+                $(this).css("background-color", getNextColor(currentColor));
+            });
+        });
+    </script>
+</body>
 </html>
