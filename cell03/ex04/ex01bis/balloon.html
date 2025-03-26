@@ -34,12 +34,10 @@
                 $(this).width(width).height(height);
 
                 let currentColor = $(this).css("background-color").replace(/\s/g, ""); 
-                console.log("Current Color:", currentColor); 
 
                 let index = colors.indexOf(currentColor);
                 let newColor = colors[(index + 1) % colors.length];
 
-                console.log("New Color:", newColor);
                 $(this).css("background-color", newColor);
             });
 
