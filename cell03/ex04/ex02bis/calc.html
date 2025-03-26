@@ -7,30 +7,34 @@
     <link href="calc.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $("form").on("submit", function (e) {
-                e.preventDefault();
-                let num1 = parseFloat($("#num1").val());
-                let num2 = parseFloat($("#num2").val());
-                let operator = $("#operator").val();
-                let ans;
-                
-                if (isNaN(num1) || isNaN(num2) || num1 < 0 || num2 < 0) {
-                    alert("Error :(");
-                    return;
-                }
-                
-                switch (operator) {
-                    case "+": ans = num1 + num2; break;
-                    case "-": ans = num1 - num2; break;
-                    case "*": ans = num1 * num2; break;
-                    case "/": ans = num1 / num2; break;
-                    case "%": ans = num1 % num2; break;
-                }
-                
-                alert(isNaN(ans) ? "It’s over 9000!" : ans);
-            });
-        });
+      $(document).ready(function () {
+          setInterval(function () {
+              alert("Please use me!");
+          }, 30000);
+
+          $("form").on("submit", function (e) {
+              e.preventDefault();
+              let num1 = parseFloat($("#num1").val());
+              let num2 = parseFloat($("#num2").val());
+              let operator = $("#operator").val();
+              let ans;
+
+              if (isNaN(num1) || isNaN(num2) || num1 < 0 || num2 < 0) {
+                  alert("Error :(");
+                  return;
+              }
+
+              switch (operator) {
+                  case "+": ans = num1 + num2; break;
+                  case "-": ans = num1 - num2; break;
+                  case "*": ans = num1 * num2; break;
+                  case "/": ans = num1 / num2; break;
+                  case "%": ans = num1 % num2; break;
+              }
+
+              alert(isNaN(ans) ? "It’s over 9000!" : ans);
+          });
+      });
     </script>
     <style>
         .container-fluid {
