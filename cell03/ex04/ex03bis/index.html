@@ -68,6 +68,7 @@
             
             $("#newTodo").on("click", function () {
                 let txt = prompt("Please Enter TODO LIST:");
+                console.log(txt)
                 if (txt) {
                     document.cookie = Date.now() + "=" + txt;
                     createTodo(txt);
